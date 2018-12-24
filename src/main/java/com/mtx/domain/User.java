@@ -1,9 +1,7 @@
 package com.mtx.domain;
 
-
-import com.sun.istack.internal.NotNull;
-
 import javax.persistence.*;
+import javax.validation.constraints.NotNull;
 import java.io.Serializable;
 
 import static javax.persistence.GenerationType.SEQUENCE;
