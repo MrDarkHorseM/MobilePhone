@@ -11,7 +11,7 @@ import static javax.persistence.GenerationType.SEQUENCE;
 @Table(name="users")
 public class User implements Serializable {
 
-    private static final long serialVersionUID = 1L;
+//    private static final long serialVersionUID = 1L;
     @Id
     @GeneratedValue(strategy=SEQUENCE, generator="users_id_seq")
     @SequenceGenerator(name="users_id_seq", sequenceName="users_id", allocationSize=1) //每次增加多少
@@ -31,8 +31,8 @@ public class User implements Serializable {
     @NotNull
     private String email;
 
-    @Column(name = "avatar_url")
-    private String avatarUrl;
+//    @Column(name = "avatar_url")
+//    private String avatarUrl;
 
     @Column(name = "passsword")
     private String password;
