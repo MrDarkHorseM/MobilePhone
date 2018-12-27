@@ -10,11 +10,11 @@ import java.util.Optional;
 
 public interface UserRepository extends CrudRepository<User, Long> {
 
-    List<User> findAll();
-
-    @Query("Select c FROM #{#entityName} c LEFT JOIN FETCH c.images")
-    List<User> findAllWithImages();
-
-    @Query("select c FROM #{#entityName} c LEFT JOIN FETCH c.images where c.id = ?1")
-    Optional<User> findByIdwithImages(Long Id);
+//    List<User> findAll();
+//
+//    @Query("Select c FROM #{#entityName} c LEFT JOIN FETCH c.images")
+//    List<User> findAllWithImages();
+//
+//    @Query("select c FROM #{#entityName} c LEFT JOIN FETCH c.images where c.id = ?1")
+//    Optional<User> findByIdwithImages(Long Id);
 }
