@@ -26,7 +26,7 @@ public class UserRepositoryTest {
         User c = new User();
         c.setUsername("toyota");
         c.setFirstname("xle");
-        userRepository.save(c);
+        User save = userRepository.save(c);
         Optional<User> testCar = userRepository.findById(c.getId());
         assertNotNull(testCar);
         assertEquals(c.getId(),testCar.get().getId());

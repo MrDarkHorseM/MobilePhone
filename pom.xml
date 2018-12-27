@@ -14,6 +14,8 @@
         <groupId>org.flywaydb</groupId>
         <artifactId>flyway-maven-plugin</artifactId>
         <flyway.version>5.2.1</flyway.version>
+        <fasterxml-jackson.version>2.9.8</fasterxml-jackson.version>
+
     </properties>
 
     <build>
@@ -231,6 +233,26 @@
             </exclusions>
             <scope>runtime</scope>
         </dependency>
+
+
+        <!-- json -->
+        <dependency>
+            <groupId>com.fasterxml.jackson.core</groupId>
+            <artifactId>jackson-databind</artifactId>
+            <version>${fasterxml-jackson.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>com.fasterxml.jackson.core</groupId>
+            <artifactId>jackson-core</artifactId>
+            <version>${fasterxml-jackson.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>com.fasterxml.jackson.core</groupId>
+            <artifactId>jackson-annotations</artifactId>
+            <version>${fasterxml-jackson.version}</version>
+        </dependency>
+
+
     </dependencies>
 
     <profiles>

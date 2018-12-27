@@ -1,4 +1,8 @@
 package com.mtx.repository;
 
-public interface ItemRepository {
+import com.mtx.domain.Item;
+import org.springframework.data.repository.CrudRepository;
+
+public interface ItemRepository extends CrudRepository<Item, Long> {
+
 }
