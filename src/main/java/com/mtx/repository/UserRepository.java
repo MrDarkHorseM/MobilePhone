@@ -17,4 +17,11 @@ public interface UserRepository extends CrudRepository<User, Long> {
 //
 //    @Query("select c FROM #{#entityName} c LEFT JOIN FETCH c.images where c.id = ?1")
 //    Optional<User> findByIdwithImages(Long Id);
+
+        User findByEmailIgnoreCase(String email);
+
+        User findByUsernameIgnoreCase( String username);
+
+        @Query(value = "select c from users where username like ?1 or email like ?1")
+        List<User> findByEmailOrUsernamelike(String usernameOrEmail, Integer num);
 }

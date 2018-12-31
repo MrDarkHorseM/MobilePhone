@@ -34,8 +34,8 @@ import java.util.Properties;
 
 
 @Configuration
-//@EnableTransactionManagement
-//@EnableJpaRepositories(basePackages = "com.mtx.repository")
+@EnableTransactionManagement
+@EnableJpaRepositories(basePackages = "com.mtx.repository")
 public class DatabaseConfig {
     private final Logger logger = LoggerFactory.getLogger(getClass());
     @Autowired
@@ -81,7 +81,7 @@ public class DatabaseConfig {
         Properties props = new Properties();
         props.put("hibernate.dialect", "org.hibernate.spatial.dialect.postgis.PostgisDialect");
         props.put("hibernate.hbm2ddl.auto", "validate");
-//        props.put("hibernate.physical_naming_strategy", "io.ascending.training.extend.hibernate.ImprovedNamingStrategy");
+//        props.put("hibernate.physical_naming_strategy", "com.mtx.extend.hibernate.ImprovedNamingStrategy");
         props.put("hibernate.connection.charSet","UTF-8");
         props.put("hibernate.show_sql","true");
         props.put("org.hibernate.flushMode","ALWAYS");
@@ -107,12 +107,5 @@ public class DatabaseConfig {
         factoryBean.setJpaVendorAdapter(new HibernateJpaVendorAdapter());
         return factoryBean;
     }
-
-
-
-
-
-
-
 
 }

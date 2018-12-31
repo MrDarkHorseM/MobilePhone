@@ -8,6 +8,8 @@ import java.util.List;
 
 import static javax.persistence.GenerationType.SEQUENCE;
 
+@Entity
+@Table(name = "payments")
 public class Payment {
     @Id
     @GeneratedValue(strategy=SEQUENCE, generator="payments_id_seq")
@@ -24,7 +26,7 @@ public class Payment {
     private BigDecimal paymentTotal;
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name="orders_id_seq")
+    @JoinColumn(name="order_id")
     private Order order;
 
     public Long getId(){ return id;}
@@ -38,6 +40,6 @@ public class Payment {
     public BigDecimal getPaymentTotal(){ return paymentTotal;}
     public void setPaymentTotal( String paymentMethod){ this.paymentMethod = paymentMethod;}
 
-    public Order order() { return order;}
+    public Order getOrder() { return order;}
     public void setOrder( Order order){ this.order = order;}
 }
