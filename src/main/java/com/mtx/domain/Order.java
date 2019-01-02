@@ -35,7 +35,7 @@ public class Order {
     private User user;
 
 
-    public long getId() { return id;}
+    public Long getId() { return id;}
 
     public Instant getOrderDate() { return orderDate;}
     public void setOrderDate(Instant orderDate) { this.orderDate = orderDate; }

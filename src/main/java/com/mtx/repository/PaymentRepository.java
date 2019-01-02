@@ -9,4 +9,6 @@ import java.util.List;
 
 public interface PaymentRepository extends CrudRepository<Payment, Long> {
 
+    List<Payment>findByOrder_Id(String order_id);
+
 }

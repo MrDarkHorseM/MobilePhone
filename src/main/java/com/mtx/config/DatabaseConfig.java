@@ -91,13 +91,13 @@ public class DatabaseConfig {
         return factoryBean;
     }
 
-//    @Bean(name="transactionManager")
-//    public PlatformTransactionManager transactionManager(@Qualifier("entityManagerFactory") EntityManagerFactory entityManagerFactory, @Autowired DataSource dataSource) {
-//        JpaTransactionManager transactionManager = new JpaTransactionManager();
-//        transactionManager.setEntityManagerFactory(entityManagerFactory);
-//        transactionManager.setDataSource(dataSource);
-//        return transactionManager;
-//    }
+    @Bean(name="transactionManager")
+    public PlatformTransactionManager transactionManager(@Qualifier("entityManagerFactory") EntityManagerFactory entityManagerFactory, @Autowired DataSource dataSource) {
+        JpaTransactionManager transactionManager = new JpaTransactionManager();
+        transactionManager.setEntityManagerFactory(entityManagerFactory);
+        transactionManager.setDataSource(dataSource);
+        return transactionManager;
+    }
 
     private LocalContainerEntityManagerFactoryBean setUpLocalContainerEntityManagerFactoryBean(){
         LocalContainerEntityManagerFactoryBean factoryBean = new LocalContainerEntityManagerFactoryBean();

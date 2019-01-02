@@ -1,5 +1,7 @@
 package com.mtx.domain;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 import java.io.Serializable;
@@ -39,25 +41,58 @@ public class User implements Serializable {
     private String password;
 
     @OneToMany(fetch = FetchType.LAZY,mappedBy = "user",cascade = CascadeType.ALL)
+    @JsonIgnore
     private List<Order> orders;
 
-    public long getId() { return id;}
+    public Long getId() {
+        return id;
+    }
 
-    public String getUsername() { return username;}
-    public void setUsername(String username) { this.username = username; }
+    public String getUsername() {
+        return username;
+    }
 
-    public String getFirstname() { return firstname;}
-    public void setFirstname(String firstname) { this.firstname = firstname;}
+    public void setUsername(String username) {
+        this.username = username;
+    }
 
-    public String getLastname() { return lastname;}
-    public void setLastname(String lastname) { this.lastname = lastname;}
+    public String getFirstname() {
+        return firstname;
+    }
 
-    public String getEmail() { return email;}
-    public void setEmail(String email) { this.email = email;}
+    public void setFirstname(String firstname) {
+        this.firstname = firstname;
+    }
 
-    public String getPassword() {return password;}
-    public void setPassword(String password) { this.password = password;}
+    public String getLastname() {
+        return lastname;
+    }
 
-    public List getOrders() {return orders;}
-    public void setOrders(List orders){ this.orders = orders;}
+    public void setLastname(String lastname) {
+        this.lastname = lastname;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
+    public String getPassword() {
+        return password;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
+    }
+
+    public List<Order> getOrders() {
+        return orders;
+    }
+
+    public void setOrders(List<Order> orders) {
+        this.orders = orders;
+    }
 }

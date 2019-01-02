@@ -32,7 +32,9 @@ public class UserRepositoryTest {
         User k = new User();
         k.setUsername("yeezy");
         k.setFirstname("mafia");
-        User save = userRepository.save(k);
+        k.setEmail("mtx1234@gmail.com");
+        k.setPassword("123456");
+        userRepository.save(k);
         Optional<User> testShoe = userRepository.findById(k.getId());
         assertNotNull(testShoe);
         assertEquals(k.getId(),testShoe.get().getId());
