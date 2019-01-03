@@ -51,4 +51,13 @@ public class UserController {
         return userService.save(user);
     }
 
+
+    @RequestMapping(method=RequestMethod.GET,params = {"lastName"})
+    public List<User> getUserByLastName(@RequestParam(value = "lastName") String lastName){
+        logger.debug("parameter name is " + lastName);
+        List<User> user = userService.findByLastname(lastName);
+        return user;
+//        return userService.findBy(new User(userId)).get();
+    }
+
 }

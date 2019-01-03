@@ -15,7 +15,7 @@
         <artifactId>flyway-maven-plugin</artifactId>
         <flyway.version>5.2.1</flyway.version>
         <fasterxml-jackson.version>2.9.8</fasterxml-jackson.version>
-
+        <swagger.version>2.9.2</swagger.version>
     </properties>
 
     <build>
@@ -156,9 +156,6 @@
             <version>4.0.1</version>
         </dependency>
 
-
-
-
         <dependency>
             <groupId>commons-dbcp</groupId>
             <artifactId>commons-dbcp</artifactId>
@@ -250,6 +247,24 @@
             <groupId>com.fasterxml.jackson.core</groupId>
             <artifactId>jackson-annotations</artifactId>
             <version>${fasterxml-jackson.version}</version>
+        </dependency>
+
+
+        <!--API documentation-->
+        <dependency>
+            <groupId>io.springfox</groupId>
+            <artifactId>springfox-swagger2</artifactId>
+            <version>${swagger.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>io.springfox</groupId>
+            <artifactId>springfox-bean-validators</artifactId>
+            <version>${swagger.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>io.springfox</groupId>
+            <artifactId>springfox-swagger-ui</artifactId>
+            <version>${swagger.version}</version>
         </dependency>
 
 

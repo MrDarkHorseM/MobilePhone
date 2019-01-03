@@ -25,5 +25,8 @@ public class UserService {
         return userRepository.save(user);
     }
 
+    public List<User> findByLastname(String lastname){
+        return userRepository.findByLastname(lastname);
+    }
 
 }
