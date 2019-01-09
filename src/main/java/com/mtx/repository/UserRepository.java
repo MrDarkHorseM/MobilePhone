@@ -10,7 +10,6 @@ import java.util.Optional;
 
 public interface UserRepository extends CrudRepository<User, Long> {
 
-    List<User> findAll();
 //
 //    @Query("Select c FROM #{#entityName} c LEFT JOIN FETCH c.images")
 //    List<User> findAllWithImages();
@@ -25,6 +24,8 @@ public interface UserRepository extends CrudRepository<User, Long> {
 //        @Query(value = "select c from users where username like ?1 or email like ?1")
 //        List<User> findByEmailOrUsernamelike(String usernameOrEmail, Integer num);
 
+    List<User> findAll();
+
     Optional<User>findByUsername(String username);
 
     List<User>findByFirstname(String firstname);
@@ -33,6 +34,6 @@ public interface UserRepository extends CrudRepository<User, Long> {
 
     List<User>findByEmail(String email);
 
-    Optional<User> findById(Long id);
+    Optional<User>findById(Long id);
 
 }
