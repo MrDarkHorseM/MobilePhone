@@ -30,6 +30,7 @@ public class UserController {
     @RequestMapping(method = RequestMethod.GET)
     public List<User> getUserList() {
         logger.debug("list users");
+        //TODO find users from repository
         return new ArrayList<>();
     }
 

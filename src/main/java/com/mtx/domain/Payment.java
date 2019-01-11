@@ -1,5 +1,7 @@
 package com.mtx.domain;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import javax.persistence.*;
 
 import java.math.BigDecimal;
@@ -25,6 +27,7 @@ public class Payment {
     @Column(name="payment_total")
     private BigDecimal paymentTotal;
 
+    @JsonIgnore
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name="order_id")
     private Order order;

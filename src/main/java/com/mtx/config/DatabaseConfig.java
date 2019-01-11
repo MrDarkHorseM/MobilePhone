@@ -7,9 +7,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.beans.factory.annotation.Value;
-import org.springframework.context.annotation.Bean;
-import org.springframework.context.annotation.ComponentScan;
-import org.springframework.context.annotation.Configuration;
+import org.springframework.context.annotation.*;
 import org.springframework.core.env.Environment;
 import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 import org.springframework.orm.jpa.JpaTransactionManager;
@@ -76,6 +74,26 @@ public class DatabaseConfig {
     }
 
     @Bean(name="entityManagerFactory")
+//    @DependsOn("flyway")
+    @Profile({"dev","test","stage","prod"})
+    public LocalContainerEntityManagerFactoryBean entityManagerFactoryBean() {
+        LocalContainerEntityManagerFactoryBean factoryBean = setUpLocalContainerEntityManagerFactoryBean();
+        Properties props = new Properties();
+        props.put("hibernate.dialect", "org.hibernate.spatial.dialect.postgis.PostgisDialect");
+        props.put("hibernate.hbm2ddl.auto", "validate");
+//        props.put("hibernate.physical_naming_strategy", "com.mtx.extend.hibernate.ImprovedNamingStrategy");
+        props.put("hibernate.connection.charSet","UTF-8");
+        props.put("hibernate.show_sql","false");
+//        props.put("org.hibernate.flushMode","ALWAYS");
+//            <property name="hibernate.ejb.interceptor" value="com.overture.family.repository.jpa.DBNullsFirstLastInteceptor"/>
+        factoryBean.setJpaProperties(props);
+
+        return factoryBean;
+    }
+
+    @Bean(name="entityManagerFactory")
+//    @DependsOn("flyway")
+    @Profile("unit")
     public LocalContainerEntityManagerFactoryBean entityUnitManagerFactoryBean() {
         LocalContainerEntityManagerFactoryBean factoryBean = setUpLocalContainerEntityManagerFactoryBean();
         Properties props = new Properties();

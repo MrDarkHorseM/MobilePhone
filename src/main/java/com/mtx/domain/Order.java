@@ -1,10 +1,13 @@
 package com.mtx.domain;
 
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import javax.persistence.*;
 
 import java.math.BigDecimal;
 import java.time.Instant;
+import java.time.LocalDate;
 import java.util.Date;
 import java.util.List;
 
@@ -20,6 +23,9 @@ public class Order {
 
     @Column(name="order_date")
     private Instant orderDate;
+//    @Column(name="new_date")
+    @Transient
+    private LocalDate newDate;
 
     @Column(name="quantity")
     private Integer quantity;
@@ -27,9 +33,11 @@ public class Order {
     @Column(name="order_total")
     private BigDecimal orderTotal;
 
+    @JsonIgnore
     @OneToMany(fetch = FetchType.LAZY,mappedBy = "order",cascade = CascadeType.ALL)
     private List<Payment> payments;
 
+    @JsonIgnore
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name="user_id")
     private User user;
@@ -51,4 +59,12 @@ public class Order {
 
     public User getUser() { return user;}
     public void setUser( User user){ this.user = user;}
+
+    public LocalDate getNewDate() {
+        return newDate;
+    }
+
+    public void setNewDate(LocalDate newDate) {
+        this.newDate = newDate;
+    }
 }

@@ -40,8 +40,8 @@ public class User implements Serializable {
     @Column(name = "password")
     private String password;
 
-    @OneToMany(fetch = FetchType.LAZY,mappedBy = "user",cascade = CascadeType.ALL)
     @JsonIgnore
+    @OneToMany(fetch = FetchType.LAZY,mappedBy = "user",cascade = CascadeType.ALL)
     private List<Order> orders;
 
     public Long getId() {
