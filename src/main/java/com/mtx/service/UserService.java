@@ -3,6 +3,7 @@ package com.mtx.service;
 import com.mtx.domain.User;
 import com.mtx.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.crossstore.ChangeSetPersister;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -34,8 +35,9 @@ public class UserService {
         return userRepository.findByFirstname(firstname);
     }
 
-    public Optional<User> findByUsername(String username){
-        return userRepository.findByUsername(username);
+    public User findByUsername(String username){
+        User result = userRepository.findByUsername(username);
+        return result;
     }
 
     public List<User> findByEmail(String email){
@@ -45,5 +47,18 @@ public class UserService {
 //    public Optional<User> findById(Long id){
 //        return userRepository.findById(id);
 //    }
+    public User findByEmialOrUsername(String keyword) throws ChangeSetPersister.NotFoundException, NullPointerException{
+        if (keyword == null || "".equals(keyword.trim())){
+            throw new NullPointerException();
+        }
+        User user = userRepository.findByEmailIgnoreCase(keyword);
+        if (user == null){
+            user = userRepository.findByUsernameIgnoreCase(keyword);
+        }
+        if (user == null){
+            throw new ChangeSetPersister.NotFoundException();
+        }
+        return user;
+    }
 
 }

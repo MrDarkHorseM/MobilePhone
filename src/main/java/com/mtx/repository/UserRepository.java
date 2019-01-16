@@ -26,14 +26,17 @@ public interface UserRepository extends CrudRepository<User, Long> {
 
     List<User> findAll();
 
-    Optional<User>findByUsername(String username);
+    User findByUsername(String username);
 
-    List<User>findByFirstname(String firstname);
+    List<User> findByFirstname(String firstname);
 
-    List<User>findByLastname(String lastname);
+    List<User> findByLastname(String lastname);
 
-    List<User>findByEmail(String email);
+    List<User> findByEmail(String email);
 
-    Optional<User>findById(Long id);
+    Optional<User> findById(Long id);
 
+    User findByEmailIgnoreCase(String keyword);
+
+    User findByUsernameIgnoreCase(String keyword);
 }

@@ -44,14 +44,11 @@ public class UserController {
 //        }else{
 //            return null;
 //        }
-
     }
-
     @RequestMapping(method=RequestMethod.POST)
     public User generaterUser(@RequestBody User user) {
         return userService.save(user);
     }
-
 
     @RequestMapping(method=RequestMethod.GET,params = {"lastName"})
     public List<User> getUserByLastName(@RequestParam(value = "lastName") String lastName){

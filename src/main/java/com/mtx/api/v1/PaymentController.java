@@ -47,6 +47,7 @@ public class PaymentController {
         payment.setOrder(order);
         return paymentService.save(payment);}
 
+    @RequestMapping(method=RequestMethod.GET,params = {"paymentMethod"})
     public List<Payment> getPaymentByPaymentMethod(@RequestParam(value="paymentMethod") String paymentMethod){
         logger.debug("parameter name is "+paymentMethod);
         List<Payment> payment = paymentService.findByPaymentMethod(paymentMethod);
