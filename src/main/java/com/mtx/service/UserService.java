@@ -4,10 +4,13 @@ import com.mtx.domain.User;
 import com.mtx.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.crossstore.ChangeSetPersister;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 import java.util.Optional;
+import java.util.UUID;
 
 @Service
 public class UserService {
@@ -47,6 +50,7 @@ public class UserService {
 //    public Optional<User> findById(Long id){
 //        return userRepository.findById(id);
 //    }
+
     public User findByEmialOrUsername(String keyword) throws ChangeSetPersister.NotFoundException, NullPointerException{
         if (keyword == null || "".equals(keyword.trim())){
             throw new NullPointerException();
@@ -59,6 +63,15 @@ public class UserService {
             throw new ChangeSetPersister.NotFoundException();
         }
         return user;
+    }
+
+    private BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
+
+    @Transactional
+    public User createUser(User newUser) {
+        String encodedPass = encoder.encode(newUser.getPassword());
+        newUser.setPassword(encodedPass);
+        return save(newUser);
     }
 
 }

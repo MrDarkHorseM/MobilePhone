@@ -15,8 +15,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import java.util.Optional;
 
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertNotNull;
+import static org.junit.Assert.*;
 
 @WebAppConfiguration
 @RunWith(SpringJUnit4ClassRunner.class)
@@ -39,4 +38,20 @@ public class UserServiceTest {
         assertNotNull(testUser);
         assertEquals(k.getId(),testUser.getId());
     }
+
+    @Test
+    @Transactional
+    public void createUserTest(){
+        String password = "123456";
+        User a = new User();
+        a.setUsername("yeezy");
+        a.setFirstname("mafia");
+        a.setEmail("mtx1234@gmail.com");
+        a.setPassword("123456");
+        userService.save(a);
+        User testUser = userService.createUser(a);
+        assertNotNull(testUser);
+        assertNotEquals(password,testUser.getPassword());
+    }
+
 }
