@@ -2,6 +2,7 @@ package com.mtx.service;
 
 import com.mtx.domain.User;
 import com.mtx.repository.UserRepository;
+import javassist.NotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.crossstore.ChangeSetPersister;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
@@ -51,7 +52,7 @@ public class UserService {
 //        return userRepository.findById(id);
 //    }
 
-    public User findByEmialOrUsername(String keyword) throws ChangeSetPersister.NotFoundException, NullPointerException{
+    public User findByEmailOrUsername(String keyword) throws NotFoundException, NullPointerException {
         if (keyword == null || "".equals(keyword.trim())){
             throw new NullPointerException();
         }
@@ -60,7 +61,7 @@ public class UserService {
             user = userRepository.findByUsernameIgnoreCase(keyword);
         }
         if (user == null){
-            throw new ChangeSetPersister.NotFoundException();
+            throw new NotFoundException(keyword);
         }
         return user;
     }

@@ -143,8 +143,6 @@
             <version>1.0.0.Final</version>
         </dependency>
 
-
-
         <dependency>
             <groupId>javax.validation</groupId>
             <artifactId>validation-api</artifactId>
@@ -249,7 +247,6 @@
             <version>${fasterxml-jackson.version}</version>
         </dependency>
 
-
         <!--API documentation-->
         <dependency>
             <groupId>io.springfox</groupId>
@@ -287,6 +284,13 @@
         <dependency>
             <groupId>com.fasterxml.jackson.datatype</groupId>
             <artifactId>jackson-datatype-jsr310</artifactId>
+        </dependency>
+
+        <!--spring mobile-->
+        <dependency>
+            <groupId>org.springframework.mobile</groupId>
+            <artifactId>spring-mobile-device</artifactId>
+            <version>2.0.0.M3</version>
         </dependency>
 
         <!--io.jsonweb/jwt token-->
@@ -370,6 +374,15 @@
             </build>
         </profile>
     </profiles>
-
+    <repositories>
+        <repository>
+            <id>spring-milestones</id>
+            <name>Spring Milestones</name>
+            <url>https://repo.spring.io/libs-milestone</url>
+            <snapshots>
+                <enabled>false</enabled>
+            </snapshots>
+        </repository>
+    </repositories>
 
 </project>
