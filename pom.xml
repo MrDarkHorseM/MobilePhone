@@ -246,6 +246,11 @@
             <artifactId>jackson-annotations</artifactId>
             <version>${fasterxml-jackson.version}</version>
         </dependency>
+        <dependency>
+            <groupId>com.fasterxml.jackson.datatype</groupId>
+            <artifactId>jackson-datatype-jsr310</artifactId>
+            <version>${fasterxml-jackson.version}</version>
+        </dependency>
 
         <!--API documentation-->
         <dependency>
@@ -279,11 +284,6 @@
             <groupId>org.springframework.security</groupId>
             <artifactId>spring-security-config</artifactId>
             <version>${spring.version}</version>
-        </dependency>
-
-        <dependency>
-            <groupId>com.fasterxml.jackson.datatype</groupId>
-            <artifactId>jackson-datatype-jsr310</artifactId>
         </dependency>
 
         <!--spring mobile-->

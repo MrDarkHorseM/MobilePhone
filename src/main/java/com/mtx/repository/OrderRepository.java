@@ -12,7 +12,7 @@ import java.util.Optional;
 
 public interface OrderRepository extends CrudRepository<Order, Long> {
 
-   List<Order>findAll();
+   List<Order> findAll();
 
    Optional<Order> findById(Long Id);
 
@@ -20,8 +20,8 @@ public interface OrderRepository extends CrudRepository<Order, Long> {
 
    List<Order> findByUser_Id(Long Id);
 
-   List<Order>findByQuantity(Integer quantity);
+   List<Order> findByQuantity(Integer quantity);
 
-   List<Order>findByOrderTotal(BigDecimal orderTotal);
+   List<Order> findByOrderTotal(BigDecimal orderTotal);
 
 }

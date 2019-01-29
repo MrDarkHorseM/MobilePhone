@@ -1,6 +1,9 @@
 package com.mtx.service;
 
+import com.mtx.domain.Authority;
 import com.mtx.domain.User;
+import com.mtx.enumdef.AuthorityRole;
+import com.mtx.repository.AuthorityRepository;
 import com.mtx.repository.UserRepository;
 import javassist.NotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,6 +20,9 @@ import java.util.UUID;
 public class UserService {
     @Autowired
     private UserRepository userRepository;
+
+    @Autowired
+    private AuthorityRepository authorityRepository;
 
     public List<User> findAll(){
 //        List<User> users = Lists.newArrayList(userRepository.findAll());
@@ -72,7 +78,15 @@ public class UserService {
     public User createUser(User newUser) {
         String encodedPass = encoder.encode(newUser.getPassword());
         newUser.setPassword(encodedPass);
+
+        addAuthority(newUser, AuthorityRole.ROLE_REGISTERD_USER);
         return save(newUser);
+    }
+
+    @Transactional
+    public Authority addAuthority(User user, String authorityString) {
+        Authority userAuthority = new Authority(user, authorityString);
+        return authorityRepository.save(userAuthority);
     }
 
 }

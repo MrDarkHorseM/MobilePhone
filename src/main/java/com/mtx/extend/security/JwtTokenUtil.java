@@ -4,6 +4,7 @@ import com.mtx.domain.User;
 import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.SignatureAlgorithm;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.mobile.device.Device;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -25,8 +26,10 @@ public class JwtTokenUtil {
     private static final String AUDIENCE_TABLET = "tablet";
     private static final String AUDIENCE_MOBILE = "mobile";
 
+//    @Value("#{shareProperties['jwt.secret']}")
     private String secret = "secret";
 
+//    @Value("#{shareProperties['jwt.expiration']}")
     private Long expiration = 86400L;
 
     private Date generateExpirationDate() {
@@ -74,11 +77,12 @@ public class JwtTokenUtil {
         return claims;
     }
 
-        public String getUsernameFromToken(String token) {
+    public String getUsernameFromToken(String token) {
         String username;
         try {
             final Claims claims = getClaimsFromToken(token);
             username = claims.getSubject();
+//            username = (String) claims.getSubject(CLAIM_KEY_USERNAME);
         } catch (Exception e) {
             username = null;
         }
@@ -105,6 +109,18 @@ public class JwtTokenUtil {
             expiration = null;
         }
         return expiration;
+    }
+
+    public String getAudienceFromToken(String token){
+        String audience;
+        try{
+            final Claims claims = getClaimsFromToken(token);
+//            audience = claims.getAudience();
+            audience = (String) claims.get(CLAIM_KEY_AUDIENCE);
+        } catch (Exception e){
+            audience = null;
+        }
+        return audience;
     }
 
     private Boolean isTokenExpired(String token) {

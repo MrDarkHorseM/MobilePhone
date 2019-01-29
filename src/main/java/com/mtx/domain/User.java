@@ -47,6 +47,10 @@ public class User implements Serializable, UserDetails {
     @OneToMany(fetch = FetchType.LAZY,mappedBy = "user",cascade = CascadeType.ALL)
     private List<Order> orders;
 
+    @JsonIgnore
+    @OneToMany(fetch = FetchType.LAZY,mappedBy = "user",cascade = CascadeType.ALL)
+    private List<Authority> authorities;
+
     public Long getId() {
         return id;
     }

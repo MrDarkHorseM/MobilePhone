@@ -30,10 +30,7 @@ public class UserDetailServicelmpl implements UserDetailsService {
         }catch (Exception repositoryProblem) {
             logger.debug("catch AuthenticationServiceException from AuthenticationProvider");
         }
-
         return domainUser;
     }
-
-
 
 }

@@ -1,0 +1,1 @@
+ALTER table authorities add role_name varchar(255);
