@@ -1,6 +1,6 @@
 package com.mtx.config;
 
-import com.mtx.extend.RestAuthenticationEntryPoint;
+import com.mtx.extend.security.RestAuthenticationEntryPoint;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;

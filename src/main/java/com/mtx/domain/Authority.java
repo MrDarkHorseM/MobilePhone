@@ -13,10 +13,11 @@ public class Authority {
 
     @Id
     @GeneratedValue(strategy=SEQUENCE, generator = "authorities_id_seq")
-    @SequenceGenerator(name="users_id_seq", sequenceName="users_id_seq", allocationSize=1)
+    @SequenceGenerator(name="authorities_id_seq", sequenceName="authorities_id_seq", allocationSize=1)
     private Long id;
 
     @NotNull
+    @Column(name = "authority")
     private String authority;
 
     @NotNull

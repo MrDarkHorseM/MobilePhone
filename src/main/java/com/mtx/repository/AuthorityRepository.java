@@ -8,7 +8,7 @@ import java.util.List;
 import java.util.Optional;
 
 public interface AuthorityRepository extends CrudRepository<Authority, Long> {
-//
+
 //    List<Authority> findAll();
 //
 //    Optional<Authority> findById();

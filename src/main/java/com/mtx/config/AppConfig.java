@@ -29,4 +29,15 @@ public class AppConfig {
         bean.setLocation(new ClassPathResource("META-INF/env/application-"+profile+".properties"));
         return bean;
     }
+
+    @Bean(name = "shareProperties")
+    public PropertiesFactoryBean getSecretProperties() {
+        PropertiesFactoryBean bean = new PropertiesFactoryBean();
+        bean.setLocation(new ClassPathResource("META-INF/file.properties"));
+        return bean;
+    }
+
+
+
+
 }
