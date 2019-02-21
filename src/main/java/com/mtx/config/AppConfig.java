@@ -1,14 +1,14 @@
 package com.mtx.config;
 
 
+import com.amazonaws.services.s3.AmazonS3;
+import com.amazonaws.services.s3.AmazonS3ClientBuilder;
+import com.mtx.service.StorageService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.config.PropertiesFactoryBean;
-import org.springframework.context.annotation.Bean;
-import org.springframework.context.annotation.ComponentScan;
-import org.springframework.context.annotation.Configuration;
-import org.springframework.context.annotation.FilterType;
+import org.springframework.context.annotation.*;
 import org.springframework.core.env.AbstractEnvironment;
 import org.springframework.core.env.Environment;
 import org.springframework.core.io.ClassPathResource;
@@ -37,7 +37,13 @@ public class AppConfig {
         return bean;
     }
 
-
-
+//    @Bean
+//    @Profile({"dev","test"})
+//    public StorageService getStorageService(){
+//        AmazonS3 S3 = AmazonS3ClientBuilder.defaultClient();
+//        StorageService storageService = new StorageService(S3);
+//        storageService.setBucket("shoeselling");
+//        return storageService;
+//    }
 
 }

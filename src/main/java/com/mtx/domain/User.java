@@ -29,7 +29,6 @@ public class User implements Serializable, UserDetails {
     @Column(name = "first_name")
     private String firstname;
 
-
     @Column(name ="last_name") //all capital or _
     private String lastname; // camelcase
 
@@ -46,10 +45,6 @@ public class User implements Serializable, UserDetails {
     @JsonIgnore
     @OneToMany(fetch = FetchType.LAZY,mappedBy = "user",cascade = CascadeType.ALL)
     private List<Order> orders;
-
-    @JsonIgnore
-    @OneToMany(fetch = FetchType.LAZY,mappedBy = "user",cascade = CascadeType.ALL)
-    private List<Authority> authorities;
 
     public Long getId() {
         return id;
@@ -107,11 +102,6 @@ public class User implements Serializable, UserDetails {
         this.email = email;
     }
 
-    @Override
-    public Collection<? extends GrantedAuthority> getAuthorities() {
-        return null;
-    }
-
     public String getPassword() {
         return password;
     }
@@ -127,4 +117,19 @@ public class User implements Serializable, UserDetails {
     public void setOrders(List<Order> orders) {
         this.orders = orders;
     }
+
+    @JsonIgnore
+    @Transient
+//    @OneToMany(fetch = FetchType.LAZY,mappedBy = "user",cascade = CascadeType.ALL)
+    private Collection<? extends GrantedAuthority> authorities;
+
+    @Override
+    public Collection<? extends GrantedAuthority> getAuthorities() {
+        return authorities;
+    }
+
+    public void setAuthorities(Collection<? extends GrantedAuthority> authorities) {
+        this.authorities = authorities;
+    }
+
 }

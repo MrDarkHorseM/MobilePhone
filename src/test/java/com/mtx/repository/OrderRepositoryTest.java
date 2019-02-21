@@ -1,8 +1,7 @@
-package com.matianxing.repository;
+package com.mtx.repository;
 
 import com.mtx.config.AppConfig;
 import com.mtx.domain.Order;
-import com.mtx.repository.OrderRepository;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;

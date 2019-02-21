@@ -24,6 +24,9 @@ public class UserService {
     @Autowired
     private AuthorityRepository authorityRepository;
 
+    @Autowired
+    private AuthorityService authorityService;
+
     public List<User> findAll(){
 //        List<User> users = Lists.newArrayList(userRepository.findAll());
         return userRepository.findAll();
@@ -80,6 +83,7 @@ public class UserService {
         newUser.setPassword(encodedPass);
 
         addAuthority(newUser, AuthorityRole.ROLE_REGISTERD_USER);
+        User result=userRepository.save(newUser);
         return save(newUser);
     }
 
@@ -87,6 +91,10 @@ public class UserService {
     public Authority addAuthority(User user, String authorityString) {
         Authority userAuthority = new Authority(user, authorityString);
         return authorityRepository.save(userAuthority);
+    }
+
+    public List<Authority> findAuthorities(User user){
+        return authorityService.findAuthoritiesByUserId(user.getId());
     }
 
 }

@@ -36,7 +36,7 @@ public class JwtTokenUtil {
         return new Date(System.currentTimeMillis()+expiration*1000);
     }
 
-    private String generateAudience(Device device){
+    public String generateAudience(Device device){
         String audience = AUDIENCE_UNKNOWN;
         if (device.isNormal()){
             audience = AUDIENCE_WEB;
@@ -133,7 +133,7 @@ public class JwtTokenUtil {
     }
 
     public Boolean validateToken(String token, UserDetails userDetails) {
-        User user = (User) userDetails;
+        User user = (User) userDetails;   //cast
         final String username = getUsernameFromToken(token);
         final Date created = getCreatedDateFromToken(token);
 //        final Date expiration = getExpirationDateFromToken(token);

@@ -1,8 +1,8 @@
-package com.matianxing.service;
+package com.mtx.repository;
+
 
 import com.mtx.config.AppConfig;
-import com.mtx.domain.Order;
-import com.mtx.service.OrderService;
+import com.mtx.domain.User;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -12,30 +12,33 @@ import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import org.springframework.test.context.web.WebAppConfiguration;
 import org.springframework.transaction.annotation.Transactional;
 
-import javax.xml.ws.Service;
-import java.math.BigDecimal;
 import java.util.Optional;
 
-import static junit.framework.TestCase.assertEquals;
+import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;
 
 @WebAppConfiguration
 @RunWith(SpringJUnit4ClassRunner.class)
 @ActiveProfiles("unit")
 @ContextConfiguration(classes = {AppConfig.class})
-public class OrderServiceTest {
+public class UserRepositoryTest {
     @Autowired
-    private OrderService orderService;
+    private UserRepository userRepository;
 
     @Test
     @Transactional
     public void findByIdTest() {
-        Order a = new Order();
-        a.setQuantity(10);
-        a.setOrderTotal(new BigDecimal(10.0));
-        Order save = orderService.save(a);
-        Order testOrder = orderService.findById(a.getId());
-        assertNotNull(testOrder);
-        assertEquals(a.getId(),testOrder.getId());
+        User k = new User();
+        k.setUsername("yeezy");
+        k.setFirstname("mafia");
+        k.setEmail("mtx1234@gmail.com");
+        k.setPassword("123456");
+        userRepository.save(k);
+        Optional<User> testShoe = userRepository.findById(k.getId());
+        assertNotNull(testShoe);
+        assertEquals(k.getId(),testShoe.get().getId());
     }
+
+
+   // findByEmailOrUsernamelikeTest
 }

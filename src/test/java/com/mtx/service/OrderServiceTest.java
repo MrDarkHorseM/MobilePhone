@@ -1,8 +1,7 @@
-package com.matianxing.repository;
+package com.mtx.service;
 
 import com.mtx.config.AppConfig;
-import com.mtx.domain.Payment;
-import com.mtx.repository.PaymentRepository;
+import com.mtx.domain.Order;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -12,42 +11,28 @@ import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import org.springframework.test.context.web.WebAppConfiguration;
 import org.springframework.transaction.annotation.Transactional;
 
-import java.util.Optional;
+import java.math.BigDecimal;
 
-import static org.junit.Assert.assertEquals;
+import static junit.framework.TestCase.assertEquals;
 import static org.junit.Assert.assertNotNull;
 
 @WebAppConfiguration
 @RunWith(SpringJUnit4ClassRunner.class)
 @ActiveProfiles("unit")
 @ContextConfiguration(classes = {AppConfig.class})
-public class PaymentReposirotyTest {
+public class OrderServiceTest {
     @Autowired
-    private PaymentRepository paymentRepository;
+    private OrderService orderService;
 
     @Test
     @Transactional
     public void findByIdTest() {
-        Payment t = new Payment();
-        t.setPaymentMethod("credit card");
-        t.setPaymentTotal("1888");
-        Payment save = paymentRepository.save(t);
-        Optional<Payment> testPayment = paymentRepository.findById(t.getId());
-        assertNotNull(testPayment);
-        assertEquals(t.getId(),testPayment.get().getId());
+        Order a = new Order();
+        a.setQuantity(10);
+        a.setOrderTotal(new BigDecimal(10.0));
+        Order save = orderService.save(a);
+        Order testOrder = orderService.findById(a.getId());
+        assertNotNull(testOrder);
+        assertEquals(a.getId(),testOrder.getId());
     }
-
-    @Test
-    @Transactional
-    public void findByOrderTest() {
-
-
-
-
-    }
-
-
-
-
-
 }

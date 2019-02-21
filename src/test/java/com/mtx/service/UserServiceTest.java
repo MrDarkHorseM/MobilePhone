@@ -1,9 +1,8 @@
-package com.matianxing.repository;
-
+package com.mtx.service;
 
 import com.mtx.config.AppConfig;
 import com.mtx.domain.User;
-import com.mtx.repository.UserRepository;
+
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -13,18 +12,15 @@ import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import org.springframework.test.context.web.WebAppConfiguration;
 import org.springframework.transaction.annotation.Transactional;
 
-import java.util.Optional;
-
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertNotNull;
+import static org.junit.Assert.*;
 
 @WebAppConfiguration
 @RunWith(SpringJUnit4ClassRunner.class)
 @ActiveProfiles("unit")
 @ContextConfiguration(classes = {AppConfig.class})
-public class UserRepositoryTest {
+public class UserServiceTest {
     @Autowired
-    private UserRepository userRepository;
+    private UserService userService;
 
     @Test
     @Transactional
@@ -34,12 +30,25 @@ public class UserRepositoryTest {
         k.setFirstname("mafia");
         k.setEmail("mtx1234@gmail.com");
         k.setPassword("123456");
-        userRepository.save(k);
-        Optional<User> testShoe = userRepository.findById(k.getId());
-        assertNotNull(testShoe);
-        assertEquals(k.getId(),testShoe.get().getId());
+        userService.save(k);
+        User testUser = userService.findById(k.getId());
+        assertNotNull(testUser);
+        assertEquals(k.getId(),testUser.getId());
     }
 
+    @Test
+    @Transactional
+    public void createUserTest(){
+        String password = "123456";
+        User a = new User();
+        a.setUsername("yeezy");
+        a.setFirstname("mafia");
+        a.setEmail("mtx1234@gmail.com");
+        a.setPassword("123456");
+        userService.save(a);
+        User testUser = userService.createUser(a);
+        assertNotNull(testUser);
+        assertNotEquals(password,testUser.getPassword());
+    }
 
-   // findByEmailOrUsernamelikeTest
 }

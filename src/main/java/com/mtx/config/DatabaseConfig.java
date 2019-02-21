@@ -1,5 +1,6 @@
 package com.mtx.config;
 
+import com.mtx.service.StorageService;
 import org.apache.commons.dbcp.BasicDataSource;
 import org.hibernate.jpa.HibernatePersistenceProvider;
 import org.slf4j.Logger;

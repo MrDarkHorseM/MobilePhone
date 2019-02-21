@@ -1,15 +1,19 @@
 package com.mtx.domain;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import org.springframework.security.core.GrantedAuthority;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 
+import java.io.Serializable;
+
 import static javax.persistence.GenerationType.SEQUENCE;
 
 
-@Entity (name = "authorities")
-public class Authority {
+@Entity
+@Table(name = "authorities")
+public class Authority implements GrantedAuthority, Serializable {
 
     @Id
     @GeneratedValue(strategy=SEQUENCE, generator = "authorities_id_seq")
@@ -40,5 +44,7 @@ public class Authority {
     public void setAuthority(String authority){ this.authority = authority;}
 
     public User getUser(){return user;}
+
+
 
 }
