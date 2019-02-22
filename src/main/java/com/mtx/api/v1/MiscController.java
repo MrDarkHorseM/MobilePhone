@@ -1,5 +1,6 @@
 package com.mtx.api.v1;
 
+import org.hibernate.service.spi.ServiceException;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -20,6 +21,11 @@ public class MiscController {
 
         Map<String, String> result = new HashMap<>(1);
 //        result.put("s3.url", "s3.url");
+        try{
+
+        }catch(ServiceException e){
+
+        }
         return result;
 
     }
