@@ -37,13 +37,13 @@ public class AppConfig {
         return bean;
     }
 
-//    @Bean
-//    @Profile({"dev","test"})
-//    public StorageService getStorageService(){
-//        AmazonS3 S3 = AmazonS3ClientBuilder.defaultClient();
-//        StorageService storageService = new StorageService(S3);
-//        storageService.setBucket("shoeselling");
-//        return storageService;
-//    }
+    @Bean
+    @Profile({"dev","test"})
+    public StorageService getStorageService(){
+        AmazonS3 S3 = AmazonS3ClientBuilder.defaultClient();
+        StorageService storageService = new StorageService(S3);
+        storageService.setBucket("shoeselling");
+        return storageService;
+    }
 
 }

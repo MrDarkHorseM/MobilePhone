@@ -2,14 +2,18 @@ package com.mtx.service;
 
 import com.amazonaws.AmazonServiceException;
 import com.amazonaws.services.dynamodbv2.xspec.NULL;
+import com.amazonaws.services.dynamodbv2.xspec.S;
 import com.amazonaws.services.s3.AmazonS3;
 import com.amazonaws.services.s3.AmazonS3ClientBuilder;
 import com.amazonaws.services.s3.model.S3Object;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 
 import java.io.File;
+import java.net.URL;
 
 
 public class StorageService {
@@ -17,6 +21,9 @@ public class StorageService {
     private AmazonS3 s3;
 
     private String bucket;
+
+    @Value("#{ applicationProperties['amazon.s3.url'] }")
+    private String cdnUrl;
 
     private final Logger logger = LoggerFactory.getLogger(getClass());
 
@@ -72,7 +79,8 @@ public class StorageService {
         return s3.getObject(bucket, S3key);
     }
 
-
-
+    public URL getURL(String S3key){
+        return s3.getUrl(bucket, S3key);
+    }
 
 }
