@@ -6,9 +6,8 @@ import java.util.UUID;
 
 import static javax.persistence.GenerationType.SEQUENCE;
 
-
 @Entity
-@Table(name="Image")
+@Table(name="Images")
 public class Image {
     @Id
     @GeneratedValue(strategy=SEQUENCE, generator="images_id_seq")

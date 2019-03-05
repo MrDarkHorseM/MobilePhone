@@ -3,7 +3,10 @@ package com.mtx.config;
 
 import com.amazonaws.services.s3.AmazonS3;
 import com.amazonaws.services.s3.AmazonS3ClientBuilder;
+import com.amazonaws.services.sqs.AmazonSQS;
+import com.amazonaws.services.sqs.AmazonSQSClientBuilder;
 import com.mtx.service.StorageService;
+import com.mtx.service.jms.MessageSQSService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -39,11 +42,20 @@ public class AppConfig {
 
     @Bean
     @Profile({"dev","test"})
-    public StorageService getStorageService(){
+    public StorageService getStorageService() {
         AmazonS3 S3 = AmazonS3ClientBuilder.defaultClient();
         StorageService storageService = new StorageService(S3);
         storageService.setBucket("shoeselling");
         return storageService;
+    }
+
+    @Bean
+    @Profile({"dev"})
+    public MessageSQSService getMessageSQSService(){
+        AmazonSQS SQS = AmazonSQSClientBuilder.defaultClient();
+        MessageSQSService messageSQSService = new MessageSQSService(SQS);
+//        messageSQSService.SQS("url","t");
+        return messageSQSService;
     }
 
 }
