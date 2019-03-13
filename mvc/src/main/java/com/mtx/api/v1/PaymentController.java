@@ -45,7 +45,8 @@ public class PaymentController {
     public Payment generatorPayment(@RequestBody Payment payment, @PathVariable("id") Long id ){
         Order order = orderService.findById(id);
         payment.setOrder(order);
-        return paymentService.save(payment);}
+        return paymentService.save(payment);
+    }
 
     @RequestMapping(method=RequestMethod.GET,params = {"paymentMethod"})
     public List<Payment> getPaymentByPaymentMethod(@RequestParam(value="paymentMethod") String paymentMethod){

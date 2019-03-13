@@ -6,19 +6,30 @@ import com.amazonaws.services.sqs.model.SendMessageRequest;
 
 public class MessageSQSService {
 
-    AmazonSQS sqs;
+    private AmazonSQS sqs;
 
-    public MessageSQSService(AmazonSQS SQS) {
+    private String queueName;
+
+    public MessageSQSService(AmazonSQS SQS,String queueName) {
         this.sqs = SQS;
+        this.queueName =queueName;
     }
 
-    public void SQS(String queueUrl, String messageBody) {
-        SendMessageRequest send_msg_request = new SendMessageRequest()
-                .withQueueUrl(queueUrl)
+    public void sendSQSMessage(String messageBody) {
+       sendSQSMessage(messageBody,this.queueName);
+    }
+
+    public void sendSQSMessage(String messageBody, String queueName) {
+        SendMessageRequest sendMsgRequest = new SendMessageRequest()
+                .withQueueUrl(getQueueUrl(queueName))
                 .withMessageBody(messageBody)
                 .withDelaySeconds(5);
-        sqs.sendMessage(send_msg_request);
+        sqs.sendMessage(sendMsgRequest);
     }
 
+    public String getQueueUrl(String queueName){
+        String queueUrl = sqs.getQueueUrl(queueName).getQueueUrl();
+        return queueUrl;
+    }
 
 }

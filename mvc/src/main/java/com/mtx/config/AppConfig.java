@@ -53,7 +53,8 @@ public class AppConfig {
     @Profile({"dev"})
     public MessageSQSService getMessageSQSService(){
         AmazonSQS SQS = AmazonSQSClientBuilder.defaultClient();
-        MessageSQSService messageSQSService = new MessageSQSService(SQS);
+        String queueName = new String();
+        MessageSQSService messageSQSService = new MessageSQSService(SQS, queueName);
 //        messageSQSService.SQS("url","t");
         return messageSQSService;
     }
